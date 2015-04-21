@@ -156,6 +156,7 @@ var myloc = new google.maps.Marker({
                 map: map
                 });
 
+//initial creation options for accuracy circle
 var circleOptions = {
       clickable: false,
       strokeColor: '#0000FF',
@@ -176,26 +177,37 @@ var coordOptions = {
 
   
 };
-    // Add the circle for this city to the map.
+    // Add accuracy circle to map
    var accuCircle = new google.maps.Circle(circleOptions);
 
-        if (navigator.geolocation) {var userLoc = navigator.geolocation.watchPosition(
-                function(pos) {
-                    var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-		   var accuMe = pos.accuracy;
-                   mylocZoom = me;
-                   myloc.setPosition(me);
-		accuCircle.setCenter(me);
-		accuCircle.setRadius(accuMe);
-                }, 
+// check to see if geolocation is available
+        if (navigator.geolocation) {
+        	//if it is available, create a watchPosition object
+        	var userLoc = navigator.geolocation.watchPosition(
+                //set location of marker and accuracy circle from current position
+                //set radius of accuracy circle
+                	function(pos) {
+                	var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+		   	var accuMe = pos.accuracy;
+                	 mylocZoom = me;
+                   	myloc.setPosition(me);
+			accuCircle.setCenter(me);
+			accuCircle.setRadius(accuMe);
+                	}, 
                 function(error) {
-            //
-            },coordOptions);};
+            //Tell user that location couldn't be found
+            alert("Couldn't find your location!")
+            },coordOptions);}
+            //inform user if geolocation is not supported.
+            else{
+		alert("Geolocation is unavailable.")};
 
 	
-
+//load the KML data into the map
   loadKmlLayer(kmlSrc,map);
 }
+
+//function to load KML data into the map
 function loadKmlLayer(kmlSrc, map) {
   var kmlLayer = new google.maps.KmlLayer(kmlSrc, {
     suppressInfoWindows: true,
