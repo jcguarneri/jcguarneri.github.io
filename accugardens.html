@@ -188,8 +188,8 @@ var coordOptions = {
                 //set radius of accuracy circle
                 	function(pos) {
                 	var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-		   	var accuMe = pos.accuracy + 5;
-                	 mylocZoom = me;
+		   	var accuMe = pos.accuracy;
+                	mylocZoom = me;
                    	myloc.setPosition(me);
 			accuCircle.setCenter(me);
 			accuCircle.setRadius(accuMe);
