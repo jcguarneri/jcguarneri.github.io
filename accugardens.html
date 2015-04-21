@@ -171,13 +171,15 @@ var circleOptions = {
 
 var coordOptions = {
   enableHighAccuracy: true,
-  timeout: 5000
+  timeout: Infinity,
+  maximumAge: 5000
+
   
 };
     // Add the circle for this city to the map.
    var accuCircle = new google.maps.Circle(circleOptions);
 
-        if (navigator.geolocation) {navigator.geolocation.watchPosition(
+        if (navigator.geolocation) {var userLoc = navigator.geolocation.watchPosition(
                 function(pos) {
                     var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
 		   var accuMe = pos.accuracy;
@@ -185,11 +187,13 @@ var coordOptions = {
                    myloc.setPosition(me);
 		accuCircle.setCenter(me);
 		accuCircle.setRadius(accuMe);
-
                 }, 
                 function(error) {
-            console.log("Could not find current location!");
-            },coordOptions)};
+            //
+            },coordOptions);};
+
+	
+
   loadKmlLayer(kmlSrc,map);
 }
 function loadKmlLayer(kmlSrc, map) {
@@ -200,6 +204,7 @@ function loadKmlLayer(kmlSrc, map) {
   });
 }	
 google.maps.event.addDomListener(window, 'load', initialize);
+
     </script>
   </head>
   <body>
