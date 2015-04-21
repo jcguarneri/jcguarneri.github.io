@@ -166,7 +166,7 @@ var circleOptions = {
       fillOpacity: 0.35,
       map: map,
       center: collins,
-      radius: 5
+      radius: 0
       
     };
 
@@ -192,7 +192,7 @@ var coordOptions = {
                 	 mylocZoom = me;
                    	myloc.setPosition(me);
 			accuCircle.setCenter(me);
-			//accuCircle.setRadius(accuMe);
+			accuCircle.setRadius(accuMe);
                 	}, 
                 function(error) {
             //Tell user that location couldn't be found
