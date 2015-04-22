@@ -72,7 +72,7 @@ function CenterControl(controlDiv, map, center) {
   goCollinsUI.style.marginBottom = '22px';
   goCollinsUI.style.marginLeft = '12px';
   goCollinsUI.style.textAlign = 'center';
-  goCollinsUI.title = 'Zoom to Collins Ln';
+  goCollinsUI.title = 'Zoom to Collins Lane';
   controlDiv.appendChild(goCollinsUI);
   // Set CSS for the control interior
   var goCollinsText = document.createElement('div');
@@ -96,7 +96,7 @@ function CenterControl(controlDiv, map, center) {
   goRileyUI.style.marginBottom = '22px';
   goRileyUI.style.marginLeft = '12px';
   goRileyUI.style.textAlign = 'center';
-  goRileyUI.title = 'Zoom to Riley Ln';
+  goRileyUI.title = 'Zoom to Riley Lane';
   controlDiv.appendChild(goRileyUI);
   // Set CSS for the control interior
   var goRileyText = document.createElement('div');
@@ -111,10 +111,12 @@ function CenterControl(controlDiv, map, center) {
   // Setup the click event listener for 'Center':
   // simply set the map to the control's current center property.
   google.maps.event.addDomListener(goCenterUI, 'click', function() {
-    
+    if (!mylocZoom){
+    	alert('Location not found yet!')
+    }else{
     map.setCenter(mylocZoom);
     map.setZoom(18);
-  });
+  }});
 google.maps.event.addDomListener(goCollinsUI, 'click', function() {
     
     map.setCenter(collins);
@@ -189,7 +191,7 @@ var coordOptions = {
                 	function(pos) {
                 	var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
 		   	var accuMe = pos.accuracy;
-                	mylocZoom = me;
+                	//mylocZoom = me;
                    	myloc.setPosition(me);
 			accuCircle.setCenter(me);
 			accuCircle.setRadius(accuMe);
