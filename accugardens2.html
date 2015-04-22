@@ -19,22 +19,10 @@ var riley = new google.maps.LatLng(39.172914, -96.569147);
 var kmlSrc = 'https://sites.google.com/site/collinslanegardentest/collinsplots/PlotsCollins.kml?attredirects=0&d=1';
 var labelSrc ='https://sites.google.com/site/collinslanegardentest/collinsplots/plotLabelPoints.kmz?attredirects=0&d=1';
   
-/**
- * The CenterControl adds a control to the map that recenters the map
- * on collins.
- * @constructor
- */
-// Define a property to hold the center state
-/*CenterControl.prototype.center_ = null;
-// Define setters and getters for this property
-CenterControl.prototype.getCenter = function() {
-  return this.center_;
-}*/
-CenterControl.prototype.setCenter = function(center) {
-  this.center_ = center;
-}
+
+
 /** @constructor */
-function CenterControl(controlDiv, map, center) {
+function CenterControl(controlDiv, map) {
   // We set up a variable for this since we're adding event listeners later.
   var control = this;
   // Set the center property upon construction
@@ -145,7 +133,7 @@ function initialize() {
   // call the CenterControl() constructor passing
   // in this DIV.
   var centerControlDiv = document.createElement('div');
-  var centerControl = new CenterControl(centerControlDiv, map, collins);
+  var centerControl = new CenterControl(centerControlDiv, map);
   centerControlDiv.index = 1;
   map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(centerControlDiv);
   
