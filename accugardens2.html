@@ -157,7 +157,7 @@ var myloc = new google.maps.Marker({
                                                     new google.maps.Point(0,18),
                                                     new google.maps.Point(11,11)),
                 shadow: null,
-                zIndex: 999,
+                zIndex: 998,
                 map: map
                 });
 //initial creation options for accuracy circle
@@ -214,7 +214,8 @@ var coordOptions = {
     clickable:false,
     suppressInfoWindows: true,
     preserveViewport: false,
-    map: map
+    map: map,
+    z:999
   });
 }
 //function to load KML data into the map
