@@ -183,28 +183,32 @@ var coordOptions = {
 };
     // Add accuracy circle to map
    var accuCircle = new google.maps.Circle(circleOptions);
-
-// check to see if geolocation is available
-        if (navigator.geolocation) {
-        	//if it is available, create a watchPosition object
-        	var userLoc = navigator.geolocation.watchPosition(
-                //set location of marker and accuracy circle from current position
-                //set radius of accuracy circle
-                	function(pos) {
+	//set location of marker and accuracy circle from current position
+        //set radius of accuracy circle
+	myPos = function(pos) {
                 	var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
 		   	var accuMe = pos.accuracy;
                 	mylocZoom = me;
                    	myloc.setPosition(me);
 			accuCircle.setCenter(me);
 			accuCircle.setRadius(accuMe);
-                	}, 
-                function(error) {
+                	}
+                	
+         errorFunc = function(error) {
             //Tell user that location couldn't be found
             alert("Couldn't find your location!")
-            },coordOptions);}
+            }
+            
+// check to see if geolocation is available
+        if (navigator.geolocation) {
+        	//if it is available, create a watchPosition object using location and error functions
+        	var userLoc = navigator.geolocation.watchPosition(myPos,errorFunc,coordOptions);
+        	}
             //inform user if geolocation is not supported.
             else{
-		alert("Geolocation is unavailable.")};
+		alert("Geolocation is unavailable.");
+            	
+            }
 
 	
 //load the KML data into the map
