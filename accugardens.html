@@ -112,7 +112,7 @@ function CenterControl(controlDiv, map, center) {
   // simply set the map to the control's current center property.
   google.maps.event.addDomListener(goCenterUI, 'click', function() {
     if (!mylocZoom){
-    	alert('Location not found yet!')
+    	alert('We haven't found your position yet!')
     }else{
     map.setCenter(mylocZoom);
     map.setZoom(18);
@@ -191,7 +191,7 @@ var coordOptions = {
                 	function(pos) {
                 	var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
 		   	var accuMe = pos.accuracy;
-                	//mylocZoom = me;
+                	mylocZoom = me;
                    	myloc.setPosition(me);
 			accuCircle.setCenter(me);
 			accuCircle.setRadius(accuMe);
