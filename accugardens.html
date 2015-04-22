@@ -134,7 +134,7 @@ function initialize() {
   var centerControlDiv = document.createElement('div');
   var centerControl = new CenterControl(centerControlDiv, map);
   centerControlDiv.index = 1;
-  map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(centerControlDiv);
+  map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
   
   
 var myloc = new google.maps.Marker({
