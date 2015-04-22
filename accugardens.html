@@ -20,24 +20,12 @@ var kmlSrc = 'http://jcguarneri.github.io/PlotsLabels.kmz';
   
 /**
  * The CenterControl adds a control to the map that recenters the map
- * on collins.
- * @constructor
- */
-// Define a property to hold the center state
-/*CenterControl.prototype.center_ = null;
-// Define setters and getters for this property
-CenterControl.prototype.getCenter = function() {
-  return this.center_;
-}*/
-CenterControl.prototype.setCenter = function(center) {
-  this.center_ = center;
-}
-/** @constructor */
-function CenterControl(controlDiv, map, center) {
-  // We set up a variable for this since we're adding event listeners later.
-  var control = this;
-  // Set the center property upon construction
-  control.center_ = center;
+ * on the user's location, Collins Lane, or Riley Lane.
+  */
+
+
+function CenterControl(controlDiv, map) {
+  
   controlDiv.style.clear = 'both';
   // Set CSS for the control border
   var goCenterUI = document.createElement('div');
@@ -144,7 +132,7 @@ function initialize() {
   // call the CenterControl() constructor passing
   // in this DIV.
   var centerControlDiv = document.createElement('div');
-  var centerControl = new CenterControl(centerControlDiv, map, collins);
+  var centerControl = new CenterControl(centerControlDiv, map);
   centerControlDiv.index = 1;
   map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(centerControlDiv);
   
