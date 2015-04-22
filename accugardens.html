@@ -193,7 +193,7 @@ var coordOptions = {
                 	function(pos) {
                 	var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
 		   	var accuMe = pos.accuracy;
-                	//mylocZoom = me;
+                	mylocZoom = me;
                    	myloc.setPosition(me);
 			accuCircle.setCenter(me);
 			accuCircle.setRadius(accuMe);
