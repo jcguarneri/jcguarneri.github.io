@@ -120,11 +120,11 @@ function CenterControl(controlDiv, map, center) {
   	
   });
   
-  function zoomFunc(garden) {
+  zoomFunc = function(garden) {
     
     map.setCenter(garden);
     map.setZoom(18);
-  }
+  });
   
 google.maps.event.addDomListener(goCollinsUI, 'click', zoomFunc(collins));
 google.maps.event.addDomListener(goRileyUI, 'click', zoomFunc(riley));
@@ -184,7 +184,7 @@ var coordOptions = {
    var accuCircle = new google.maps.Circle(circleOptions);
 	//set location of marker and accuracy circle from current position
         //set radius of accuracy circle
-	 function myPos(pos) {
+	myPos = function(pos) {
                 	var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
 		   	var accuMe = pos.accuracy;
                 	mylocZoom = me;
