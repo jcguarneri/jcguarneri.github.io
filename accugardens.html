@@ -214,6 +214,7 @@ var coordOptions = {
 //function to load KML data into the map
 function loadKmlLayer(kmlSrc, map) {
   var kmlLayer = new google.maps.KmlLayer(kmlSrc, {
+    clickable:false,
     suppressInfoWindows: true,
     preserveViewport: false,
     map: map
