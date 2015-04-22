@@ -111,12 +111,12 @@ function CenterControl(controlDiv, map, center) {
   // Setup the click event listener for 'Center':
   // simply set the map to the control's current center property.
   google.maps.event.addDomListener(goCenterUI, 'click', function() {
-    if (!mylocZoom){
+    
     	alert('We haven't found your position yet!');
-    }else{
+    
     map.setCenter(mylocZoom);
     map.setZoom(18);
-  	}
+  	
   	
   });
 google.maps.event.addDomListener(goCollinsUI, 'click', function() {
@@ -193,7 +193,7 @@ var coordOptions = {
                 	function(pos) {
                 	var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
 		   	var accuMe = pos.accuracy;
-                	//mylocZoom = me;
+                	mylocZoom = me;
                    	myloc.setPosition(me);
 			accuCircle.setCenter(me);
 			accuCircle.setRadius(accuMe);
