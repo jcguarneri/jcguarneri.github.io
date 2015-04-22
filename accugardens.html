@@ -119,15 +119,16 @@ function CenterControl(controlDiv, map, center) {
   	}
   	
   });
-  
-  zoomFunc = function(garden) {
+google.maps.event.addDomListener(goCollinsUI, 'click', function() {
     
-    map.setCenter(garden);
+    map.setCenter(collins);
     map.setZoom(18);
   });
-  
-google.maps.event.addDomListener(goCollinsUI, 'click', zoomFunc(collins));
-google.maps.event.addDomListener(goRileyUI, 'click', zoomFunc(riley));
+google.maps.event.addDomListener(goRileyUI, 'click', function() {
+    
+    map.setCenter(riley);
+    map.setZoom(18);
+  });
   
 }
 function initialize() {
