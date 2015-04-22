@@ -112,7 +112,7 @@ function CenterControl(controlDiv, map, center) {
   // simply set the map to the control's current center property.
   google.maps.event.addDomListener(goCenterUI, 'click', function() {
     if (!mylocZoom){
-    	alert('We haven't found your position yet!');
+    	alert("We haven't found your position yet!");
     }else{
     map.setCenter(mylocZoom);
     map.setZoom(18);
