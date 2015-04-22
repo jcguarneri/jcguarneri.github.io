@@ -7,7 +7,7 @@
     <style>
       html, body, #map-canvas {
         width: 100 %;
-        height: 400px;
+        height: 95%;
       }
     </style>
     <script src="https://maps.googleapis.com/maps/api/js"></script>
@@ -16,7 +16,8 @@ var map;
 var mylocZoom;
 var collins = new google.maps.LatLng(39.159328, -96.583333);
 var riley = new google.maps.LatLng(39.172914, -96.569147);
-var kmlSrc = 'http://jcguarneri.github.io/PlotsLabels.kmz';
+var kmlSrc = 'https://sites.google.com/site/collinslanegardentest/collinsplots/PlotsCollins.kml?attredirects=0&d=1';
+var labelSrc ='https://sites.google.com/site/collinslanegardentest/collinsplots/plotLabelPoints.kmz?attredirects=0&d=1';
   
 /**
  * The CenterControl adds a control to the map that recenters the map
@@ -24,11 +25,11 @@ var kmlSrc = 'http://jcguarneri.github.io/PlotsLabels.kmz';
  * @constructor
  */
 // Define a property to hold the center state
-CenterControl.prototype.center_ = null;
+/*CenterControl.prototype.center_ = null;
 // Define setters and getters for this property
 CenterControl.prototype.getCenter = function() {
   return this.center_;
-}
+}*/
 CenterControl.prototype.setCenter = function(center) {
   this.center_ = center;
 }
@@ -72,7 +73,7 @@ function CenterControl(controlDiv, map, center) {
   goCollinsUI.style.marginBottom = '22px';
   goCollinsUI.style.marginLeft = '12px';
   goCollinsUI.style.textAlign = 'center';
-  goCollinsUI.title = 'Zoom to Collins Ln';
+  goCollinsUI.title = 'Zoom to Collins Lane';
   controlDiv.appendChild(goCollinsUI);
   // Set CSS for the control interior
   var goCollinsText = document.createElement('div');
@@ -96,7 +97,7 @@ function CenterControl(controlDiv, map, center) {
   goRileyUI.style.marginBottom = '22px';
   goRileyUI.style.marginLeft = '12px';
   goRileyUI.style.textAlign = 'center';
-  goRileyUI.title = 'Zoom to Riley Ln';
+  goRileyUI.title = 'Zoom to Riley Lane';
   controlDiv.appendChild(goRileyUI);
   // Set CSS for the control interior
   var goRileyText = document.createElement('div');
@@ -111,9 +112,13 @@ function CenterControl(controlDiv, map, center) {
   // Setup the click event listener for 'Center':
   // simply set the map to the control's current center property.
   google.maps.event.addDomListener(goCenterUI, 'click', function() {
-    
+    if (!mylocZoom){
+    	alert("We haven't found your position yet!");
+    }else{
     map.setCenter(mylocZoom);
     map.setZoom(18);
+  	}
+  	
   });
 google.maps.event.addDomListener(goCollinsUI, 'click', function() {
     
@@ -155,7 +160,7 @@ var myloc = new google.maps.Marker({
                 zIndex: 999,
                 map: map
                 });
-
+//initial creation options for accuracy circle
 var circleOptions = {
       clickable: false,
       strokeColor: '#0000FF',
@@ -168,43 +173,60 @@ var circleOptions = {
       radius: 0
       
     };
-
 var coordOptions = {
   enableHighAccuracy: true,
   timeout: Infinity,
   maximumAge: 5000
-
   
 };
-    // Add the circle for this city to the map.
+    // Add accuracy circle to map
    var accuCircle = new google.maps.Circle(circleOptions);
-
-        if (navigator.geolocation) {var userLoc = navigator.geolocation.watchPosition(
-                function(pos) {
-                    var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-		   var accuMe = pos.accuracy;
-                   mylocZoom = me;
-                   myloc.setPosition(me);
-		accuCircle.setCenter(me);
-		accuCircle.setRadius(accuMe);
-                }, 
-                function(error) {
-            //
-            },coordOptions);};
-
+	//set location of marker and accuracy circle from current position
+        //set radius of accuracy circle
+	myPos = function(pos) {
+                	var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+		   	var accuMe = pos.accuracy;
+                	mylocZoom = me;
+                   	myloc.setPosition(me);
+			accuCircle.setCenter(me);
+			accuCircle.setRadius(accuMe);
+                	}
+                	
+         errorFunc = function(error) {
+            //Tell user that location couldn't be found
+            alert("Couldn't find your location!")
+            }
+            
+// check to see if geolocation is available
+        if (navigator.geolocation) {
+        	//if it is available, create a watchPosition object using location and error functions
+        	var userLoc = navigator.geolocation.watchPosition(myPos,errorFunc,coordOptions);
+        	}
+            //inform user if geolocation is not supported.
+            else{
+		alert("Geolocation is unavailable.");
+            	
+            }
 	
-
+//load the KML data into the map
   loadKmlLayer(kmlSrc,map);
+  var labelLayer = new google.maps.KmlLayer(labelSrc,{
+    clickable:false,
+    suppressInfoWindows: true,
+    preserveViewport: false,
+    map: map
+  });
 }
+//function to load KML data into the map
 function loadKmlLayer(kmlSrc, map) {
   var kmlLayer = new google.maps.KmlLayer(kmlSrc, {
+    clickable:false,
     suppressInfoWindows: true,
     preserveViewport: false,
     map: map
   });
 }	
 google.maps.event.addDomListener(window, 'load', initialize);
-
     </script>
   </head>
   <body>
