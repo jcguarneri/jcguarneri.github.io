@@ -170,7 +170,7 @@ var coordOptions = {
         //set radius of accuracy circle
 	myPos = function(pos) {
                 	var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-		   	var accuMe = Coordinates.accuracy;
+		   	var accuMe = pos.coords.accuracy;
                 	mylocZoom = me;
                    	myloc.setPosition(me);
 			accuCircle.setCenter(me);
