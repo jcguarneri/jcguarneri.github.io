@@ -142,9 +142,9 @@ function initialize() {
 var myloc = new google.maps.Marker({
                 clickable: false,
                 icon: new google.maps.MarkerImage(markerSrc,
-                                                    new google.maps.Size(22,22),
-                                                    new google.maps.Point(0,18),
-                                                    new google.maps.Point(11,11)),
+                      new google.maps.Size(22,22),
+                      new google.maps.Point(0,18),
+                      new google.maps.Point(11,11)),
                 shadow: null,
                 zIndex: 999,
                 map: map
@@ -174,14 +174,14 @@ var coordOptions = {
     // Add accuracy circle to map
    var accuCircle = new google.maps.Circle(circleOptions);
 	//set location of marker and accuracy circle from current position
-        //set radius of accuracy circle
+    //set radius of accuracy circle
 	myPos = function(pos) {
                 	var me = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-		   	var accuMe = pos.accuracy;
+                    var accuMe = pos.coords.accuracy;
                 	mylocZoom = me;
                    	myloc.setPosition(me);
-			accuCircle.setCenter(me);
-			accuCircle.setRadius(accuMe);
+                    accuCircle.setCenter(me);
+                    accuCircle.setRadius(accuMe);
                 	}
                 	
          errorFunc = function(error) {
