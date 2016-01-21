@@ -157,7 +157,7 @@ var circleOptions = {
       strokeOpacity: 0.8,
       strokeWeight: 2,
       fillColor: '#0000FF',
-      fillOpacity: 0.35,
+      fillOpacity: 0.25,
       map: map,
       center: collins,
       radius: 0
@@ -181,7 +181,13 @@ var coordOptions = {
                 	mylocZoom = me;
                    	myloc.setPosition(me);
                     accuCircle.setCenter(me);
-                    accuCircle.setRadius(accuMe);
+                    if (accuMe < 25){
+                    	accuCircle.setRadius(accuMe);
+                    	}
+                    else {
+                    accuCircle.setRadius(0);
+                    	
+                    }
                 	}
                 	
          errorFunc = function(error) {
