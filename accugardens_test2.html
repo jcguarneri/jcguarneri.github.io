@@ -202,13 +202,7 @@ var coordOptions = {
 	
 //load the KML data into the map
   loadKmlLayer(kmlSrc,map);
-  var labelLayer = new google.maps.KmlLayer(labelSrc,{
-    clickable:false,
-    suppressInfoWindows: true,
-    preserveViewport: false,
-    map: map,
-    z:999
-  });
+  
 }
 //function to load KML data into the map
 function loadKmlLayer(kmlSrc, map) {
