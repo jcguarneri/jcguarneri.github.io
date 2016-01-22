@@ -175,6 +175,8 @@ var coordOptions = {
                    	myloc.setPosition(me);
 			accuCircle.setCenter(me);
 			accuCircle.setRadius(accuMe);
+			accuCircle.setStrokeOpacity(2/accuMe);
+			accuCircle.setFillOpacity(1/accuMe);
                 	}
                 	
          errorFunc = function(error) {
