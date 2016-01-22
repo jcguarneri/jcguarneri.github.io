@@ -18,6 +18,7 @@ var collins = new google.maps.LatLng(39.159328, -96.583333);
 var riley = new google.maps.LatLng(39.172914, -96.569147);
 var kmlSrc = 'http://jcguarneri.github.io/PlotsLabels.kmz';
 var imgSrc = 'http://jcugarneri.github.io/mobileimgs2.png';
+var labelSrc ='http://jcguarneri.github.io/PlotsLabels.kmz';
   
 
 
@@ -202,6 +203,13 @@ var coordOptions = {
 	
 //load the KML data into the map
   loadKmlLayer(kmlSrc,map);
+  var labelLayer = new google.maps.KmlLayer(labelSrc,{
+ -    clickable:false,
+ -    suppressInfoWindows: true,
+ -    preserveViewport: false,
+ -    map: map,
+ -    z:999
+ -  });
   
 }
 //function to load KML data into the map
