@@ -175,7 +175,12 @@ var coordOptions = {
                    	myloc.setPosition(me);
 			accuCircle.setCenter(me);
 			accuCircle.setRadius(accuMe);
-			accuCircle.strokeOpacity =(2/accuMe);
+			if (accuMe < 2.5){	
+				accuCircle.strokeOpacity =(2/accuMe);
+			}
+			else{
+				accuCircle.strokeOpacity = 0.8
+			}
 			accuCircle.fillOpacity =(1/accuMe);
                 	}
                 	
